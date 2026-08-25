@@ -6,54 +6,32 @@
 #include <stdio.h>
 
 #define TABZISE 8
-#define MAXLINE 1000
-
-int mydetab(char line[], int max, int tab);
 
 int main(void)
 {
-
   int c, i;
-  int len; /* longitud de la linea */
+  int tab;
+  int esp;
+  int col;
 
-  char line[MAXLINE]; /* linea de entrada */
-
-  len = 1;
-  while ((len = mydetab(line, MAXLINE, TABZISE)) > 0){
-    printf("%s",line);
-  }
- 
+  tab = TABZISE;
   
-}
-
-/* recibe una caracter y un limite, y devuelve su longitud*/
-int mydetab(char s[], int lim, int tab)
-{
-  int i,c,col,esp,detab;
-
-  detab = tab;
-  for (i=0; i < lim-1 && (c = getchar()) != EOF; i++){
-    if (c == '\t'){
-      col = i;
-      esp = col - tab;
-      while (esp >= 0){
-	s[i] = ' ';
-	esp = esp - 1;
-	i++;
+  col = 0;
+  while ((c = getchar()) != EOF){
+    if (c != '\t' && c != '\n'){
+      putchar(c);
+      col++;
+    }
+    else if (c == '\t'){
+      esp = tab - (col % tab);
+      for (i=0; i < esp; i++){
+	putchar(' ');
       }
-      detab = detab + tab;
+      col = col + esp;
     }
-    else if (c != '\t'){
-      s[i] = c;
+    else if (c == '\n'){
+      putchar(c);
+      col = 0;
     }
   }
-
-  if (c == '\n'){
-    s[i] = c;
-    i++;
-  }
-
-  s[i] = '\0';
-
-  return i;
 }

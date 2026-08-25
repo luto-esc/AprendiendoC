@@ -1,0 +1,32 @@
+/* escriba un programa para "doblar" lineas grandes dde entrada en dos
+ o mas lineas mas cortas despues del ultimo caracter no blanco que ocurra antes
+de la n-esima columna de entrada. Asegurese de que su programa se comporte
+apropiadamente con las lineas muy largas, y de que no hay blancos o
+tabuladores antes de la columna especifica */
+
+#include <stdio.h>
+
+#define LIM 15
+
+int main(void)
+{
+  int c;
+  int col;
+  int limit;
+
+  limit = LIM;
+  col = 0;
+  while ((c = getchar()) != EOF ){
+    if (col == limit - 1 && c != ' '){
+      putchar('\n');
+      col = 0;
+    }
+    else {
+      if (c != '\t' || c != ' '){
+	putchar(c);
+	col++;
+      }
+    }
+  }
+  return 0;
+}
