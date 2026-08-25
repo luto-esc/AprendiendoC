@@ -8,9 +8,7 @@
 #define TABZISE 8
 #define MAXLINE 1000
 
-int mygetline(char line[], int max);
-
-int mydetab(char line[], char to[]);
+int mydetab(char line[], int max, int tab);
 
 int main(void)
 {
@@ -19,23 +17,35 @@ int main(void)
   int len; /* longitud de la linea */
 
   char line[MAXLINE]; /* linea de entrada */
-  char linetab[MAXLINE]; /* linea tab */
 
   len = 1;
-  while ((len = mygetline(line, MAXLINE)) > 0){
-    
+  while ((len = mydetab(line, MAXLINE, TABZISE)) > 0){
+    printf("%s",line);
   }
  
   
 }
 
 /* recibe una caracter y un limite, y devuelve su longitud*/
-int mygetline(char s[], int lim)
+int mydetab(char s[], int lim, int tab)
 {
-  int i,c;
+  int i,c,col,esp,detab;
 
-  for (i=0, i < lim-1 && (c == getchar()) != EOF && c != '\n', i++){
-    s[i] = c;
+  detab = tab;
+  for (i=0; i < lim-1 && (c = getchar()) != EOF; i++){
+    if (c == '\t'){
+      col = i;
+      esp = col - tab;
+      while (esp >= 0){
+	s[i] = ' ';
+	esp = esp - 1;
+	i++;
+      }
+      detab = detab + tab;
+    }
+    else if (c != '\t'){
+      s[i] = c;
+    }
   }
 
   if (c == '\n'){
