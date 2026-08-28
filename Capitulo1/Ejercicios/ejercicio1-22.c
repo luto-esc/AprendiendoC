@@ -6,45 +6,37 @@ tabuladores antes de la columna especifica */
 
 #include <stdio.h>
 
-#define LIM 6
+#define LIM 10
+#define IN 1
+#define OUT 0
+
+int mygetline(char line[], int maxline);
 
 int main(void)
 {
-  int c; /* caracter leido */
-  int esp; /* lugar del ultimo espacio guardado */
-  int ind; /* indice del arreglo */
-  int i; /* recorre el arreglo */
+  int c;
+  int i;
+  char line[LIM];
 
-  char line[LIM]; /* arreglo del 0...5*/
+  
+}
 
-  ind = 0;
-  esp = -1;
-  while ((c = getchar()) != EOF){
-    /*si el usuario puso un '\n' se imprime lo que sea y se reinicia todo */
-    if (c == '\n'){
-      for (i=0; i<ind;i++){
-	putchar(line[i]);
-      }
-      putchar('\n');
-      ind = 0;
-      esp = -1;
+int mygetline(char l[], int lim)
+{
+  int i;
+  int c;
+  int ult_esp;
+  int aux;
+  int est; /* estado de la linea */
+
+  est = OUT;
+  for (i=0; i < lim && c != '\n',i++){
+    if (c = ' '){
+      est = IN;
     }
-    else{ /*cualquier otro caracter se guarda en line */
-      line[ind] = c;
-      if (c == ' '){
-	esp = ind /*guardamos el lugar del ultimo espacio en blanco*/
-      }
-      ind++;
-      if (ind == LIM){ /*cuando el ind sea igual al limite */
-	/*tendremos que imprimir por pantalla hasta el ultimo espacio*/
-	for (i=0; i < esp; i++){
-	  putchar(line[i]);
-	}
-	putchar('\n');
-	/*ahora hay que mover lo que sobra al inicio del arreglo*/
-      }
+    if (c != ' '){
+      est = 
     }
+    
   }
- 
-  return 0;
 }
