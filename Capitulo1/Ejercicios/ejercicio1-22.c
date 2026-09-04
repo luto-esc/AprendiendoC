@@ -30,6 +30,10 @@ int main(void)
 	  sline[i] = line[i]; /* grabo el arreglo hasta el ultimo espacio guardado */ 
 	}
 	printf("%d",sline); /* muestro el arreglo */
+	
+	for (i=ult_esp, aux=0; i < LIM; i++){
+       
+	}
       }
       
     }
