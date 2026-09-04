@@ -10,33 +10,29 @@ tabuladores antes de la columna especifica */
 #define IN 1
 #define OUT 0
 
-int mygetline(char line[], int maxline);
 
 int main(void)
 {
   int c;
   int i;
+  int ini;
   char line[LIM];
+  char sline[LIM];
+  int estado; /* bandera para ver si esta en una palabra */
+  int ult_esp; /* lugar del ultimo espacio */
 
-  
-}
-
-int mygetline(char l[], int lim)
-{
-  int i;
-  int c;
-  int ult_esp;
-  int aux;
-  int est; /* estado de la linea */
-
-  est = OUT;
-  for (i=0; i < lim && c != '\n',i++){
-    if (c = ' '){
-      est = IN;
+  estado = OUT;
+  i = 0;
+  while ((c = getchar()) != EOF && c != '\n'){
+    if (i == LIM){
+      if (estado == IN){
+	for (i=0; i < ult_esp; i++){
+	  sline[i] = line[i]; /* grabo el arreglo hasta el ultimo espacio guardado */ 
+	}
+	printf("%d",sline); /* muestro el arreglo */
+      }
+      
     }
-    if (c != ' '){
-      est = 
-    }
-    
   }
+  
 }
