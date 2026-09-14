@@ -15,28 +15,16 @@ int main(void)
 {
   int c;
   int i;
-  int ini;
-  char line[LIM];
+  int ind;
   char sline[LIM];
+  char word[LIM];
   int estado; /* bandera para ver si esta en una palabra */
   int ult_esp; /* lugar del ultimo espacio */
 
-  estado = OUT;
+  estado = IN;
   i = 0;
   while ((c = getchar()) != EOF && c != '\n'){
-    if (i == LIM){
-      if (estado == IN){
-	for (i=0; i < ult_esp; i++){
-	  sline[i] = line[i]; /* grabo el arreglo hasta el ultimo espacio guardado */ 
-	}
-	printf("%d",sline); /* muestro el arreglo */
-	
-	for (i=ult_esp, aux=0; i < LIM; i++){
-       
-	}
-      }
-      
-    }
+    
   }
   
 }
