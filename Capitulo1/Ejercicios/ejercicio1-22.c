@@ -15,6 +15,8 @@ void imprimir_linea(char l[]);
 
 int obt_tamano_linea(char l[]);
 
+void copiar_linea(char l[], char sl[], int inicio);
+
 
 int main(void)
 {
@@ -102,3 +104,24 @@ int obt_tamano_linea(char l[])
   }
   return i;
 }
+
+/* procedimiento que recibe linea de llega y linea a donde se copia
+   tambien recibe de donde inicia segun el indice de la linea de llegada */
+void copiar_linea (l[], ls[], int indice, int ultimo_espacio, int columna)
+{
+  int i;
+  int inicio;
+  int final;
+  
+  
+  inicio = indice - columna;
+  final = final - columna;
+  
+  i=0;
+  while (i < final - 1){
+    sline[i] = line[inicio];
+    i++;
+    inicio++;
+  }
+}
+
