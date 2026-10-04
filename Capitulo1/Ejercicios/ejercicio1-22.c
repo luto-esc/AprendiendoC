@@ -15,7 +15,7 @@ void imprimir_linea(char l[]);
 
 int obt_tamano_linea(char l[]);
 
-void copiar_linea(char l[], char sl[], int inicio);
+void copiar_linea(char l[], char sl[], int indice, int ultimo_espacio, int columna);
 
 
 int main(void)
@@ -42,25 +42,13 @@ int main(void)
   while (i < len){
     if (col = LIM){ /* tenemos que grabar en sline */
       if (estado = IN){ /* tenemos que grabar hasta el ultimo espacio en blanco */
-	j=0;
-	for (x=col - i; j < col - ult_esp - 1;j++){
-	  sline[j] = line[x];
-	  x++;
-	}
-	j++;
-	sline[j] = '\0';
+	copiar_linea(line, sline, i, ult_esp, col);
 	imprimir_linea(sline);
 	printf("\n");
 	col=0;
       }
       else if (estado = OUT){ /* se graba hasta el lugar de i */
-	j=0;
-	for (x=col - i; j < col - 1; j++){
-	  sline[j] = line[x];
-	  x++;
-	}
-	j++;
-	sline[j] = '\0';
+	copiar_linea(line, sline, i, ult_esp, col);
 	imprimir_linea(sline);
 	printf("\n");
 	col=0;
@@ -75,8 +63,7 @@ int main(void)
     col++;
     i++;
   }
-  
-  
+  return 0;
 }
 
 /* procedimiento que recibe una linea y la imprime por pantalla
@@ -107,21 +94,26 @@ int obt_tamano_linea(char l[])
 
 /* procedimiento que recibe linea de llega y linea a donde se copia
    tambien recibe de donde inicia segun el indice de la linea de llegada */
-void copiar_linea (l[], ls[], int indice, int ultimo_espacio, int columna)
+void copiar_linea (char l[],char ls[], int indice, int ultimo_espacio, int columna)
 {
   int i;
   int inicio;
   int final;
-  
+
+  if (columna = 40){
+  }
+
   
   inicio = indice - columna;
-  final = final - columna;
+  final = ultimo_espacio - columna;
   
   i=0;
   while (i < final - 1){
-    sline[i] = line[inicio];
+    ls[i] = l[inicio];
     i++;
     inicio++;
   }
+  i++;
+  ls[i] = '\0';
 }
 
