@@ -38,30 +38,36 @@ int main(void)
   
   len = obt_tamano_linea(line);
 
+  col = 0;
   i=0;
   while (i < len){
-    if (col = LIM){ /* tenemos que grabar en sline */
-      if (estado = IN){ /* tenemos que grabar hasta el ultimo espacio en blanco */
+    if (col == LIM){ /* tenemos que grabar en sline */
+      if (estado == IN){ /* tenemos que grabar hasta el ultimo espacio en blanco */
 	copiar_linea(line, sline, i, ult_esp, col);
 	imprimir_linea(sline);
 	printf("\n");
+	printf("hola\n");
 	col=0;
       }
-      else if (estado = OUT){ /* se graba hasta el lugar de i */
-	copiar_linea(line, sline, i, ult_esp, col);
+      else if (estado == OUT){ /* se graba hasta el lugar de i */
+	copiar_linea(line, sline, i, 0, col);
 	imprimir_linea(sline);
 	printf("\n");
+	printf("holaa2");
 	col=0;
       }
     }
-    else if (line[i] = ' '){
-      estado = IN;
+    else {
+      if (line[i] == ' '){
+	estado = OUT;
+	ult_esp = i;
+      }
+      else if (line[i] != ' '){
+	estado = IN;
+      }
+      i++;
+      col++;
     }
-    else if (line[i] != ' '){
-      estado = OUT;
-    }
-    col++;
-    i++;
   }
   return 0;
 }
@@ -100,15 +106,17 @@ void copiar_linea (char l[],char ls[], int indice, int ultimo_espacio, int colum
   int inicio;
   int final;
 
-  if (columna = 40){
+  if (indice == columna){
+    inicio = 0;
+    final = indice;
   }
-
-  
-  inicio = indice - columna;
-  final = ultimo_espacio - columna;
+  else{
+    inicio = indice - columna;
+    final = ultimo_espacio - columna;
+  }
   
   i=0;
-  while (i < final - 1){
+  while (inicio < final - 1){
     ls[i] = l[inicio];
     i++;
     inicio++;
